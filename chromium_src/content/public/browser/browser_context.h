@@ -11,6 +11,8 @@
 #include "../../../../../content/public/browser/browser_context.h"
 #undef IsOffTheRecord
 
+#include "brave/chromium_src/content/public/browser/tld_ephemeral_lifetime.h"
+
 #include <string>
 
 #include "base/memory/ref_counted.h"
