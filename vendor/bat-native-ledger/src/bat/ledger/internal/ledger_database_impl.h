@@ -17,18 +17,20 @@
 
 namespace ledger {
 
+struct UseTempDatabaseForTesting {};
+
 class LedgerDatabaseImpl : public LedgerDatabase {
  public:
   explicit LedgerDatabaseImpl(const base::FilePath& path);
+  explicit LedgerDatabaseImpl(UseTempDatabaseForTesting);
 
   LedgerDatabaseImpl(const LedgerDatabaseImpl&) = delete;
   LedgerDatabaseImpl& operator=(const LedgerDatabaseImpl&) = delete;
 
   ~LedgerDatabaseImpl() override;
 
-  void RunTransaction(
-      type::DBTransactionPtr transaction,
-      type::DBCommandResponse* command_response) override;
+  void RunTransaction(type::DBTransactionPtr transaction,
+                      type::DBCommandResponse* command_response) override;
 
  private:
   type::DBCommandResponse::Status Initialize(
@@ -44,9 +46,8 @@ class LedgerDatabaseImpl : public LedgerDatabase {
       type::DBCommand* command,
       type::DBCommandResponse* command_response);
 
-  type::DBCommandResponse::Status Migrate(
-      int32_t version,
-      int32_t compatible_version);
+  type::DBCommandResponse::Status Migrate(int32_t version,
+                                          int32_t compatible_version);
 
   void OnMemoryPressure(
       base::MemoryPressureListener::MemoryPressureLevel memory_pressure_level);
@@ -55,6 +56,7 @@ class LedgerDatabaseImpl : public LedgerDatabase {
   sql::Database db_;
   sql::MetaTable meta_table_;
   bool initialized_;
+  bool use_temp_;
 
   std::unique_ptr<base::MemoryPressureListener> memory_pressure_listener_;
 
