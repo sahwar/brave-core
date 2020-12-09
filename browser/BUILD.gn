@@ -27,14 +27,14 @@ source_set("browser_process") {
   # Remove when https://github.com/brave/brave-browser/issues/10657 is resolved
   check_includes = false
   visibility = [
-    "//chrome/browser/*",
-    "//brave/browser/*",
     "//brave:browser_dependencies",
+    "//brave/browser/*",
     "//brave/components/brave_ads/test:*",
     "//brave/components/brave_rewards/browser:testutil",
     "//brave/components/brave_rewards/test:*",
     "//brave/components/ipfs/test:*",
     "//brave/test:*",
+    "//chrome/browser/*",
   ]
 
   sources = [
@@ -174,8 +174,8 @@ source_set("browser_process") {
     "//components/services/patch/content",
     "//components/services/unzip/content",
     "//components/sessions",
-    "//components/sync_device_info",
     "//components/spellcheck/browser",
+    "//components/sync_device_info",
     "//components/unified_consent",
     "//components/update_client:patch_impl",
     "//components/update_client:unzip_impl",
@@ -191,8 +191,8 @@ source_set("browser_process") {
 
   if (brave_wallet_enabled) {
     deps += [
-      "//brave/components/brave_wallet",
       "brave_wallet",
+      "//brave/components/brave_wallet",
     ]
   }
 
@@ -432,10 +432,10 @@ source_set("version_info") {
 
 source_set("browser") {
   visibility = [
-    "//chrome/browser/*",
-    "//brave/browser/*",
     "//brave:browser_dependencies",
+    "//brave/browser/*",
     "//brave/test:*",
+    "//chrome/browser/*",
   ]
 
   deps = [ "//chrome/browser" ]
