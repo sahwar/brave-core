@@ -29,7 +29,7 @@ class AdsClientMock : public AdsClient {
   MOCK_METHOD0(ShouldShowNotifications, bool());
 
   MOCK_CONST_METHOD0(CanShowBackgroundNotifications, bool());
-  
+
   MOCK_METHOD1(ShowNotification, void(
       const AdNotificationInfo& ad_notification));
 
